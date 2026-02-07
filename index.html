@@ -38,7 +38,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;color:var(--white);padding:120px 3rem 80px;position:relative;overflow:hidden;text-align:center}
-.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1920&q=80') center/cover no-repeat;z-index:0}
+.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
 .hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.85;z-index:1}
 .hero-container{max-width:1000px;margin:0 auto;position:relative;z-index:2}
 .hero-logo{margin-bottom:2.5rem}
@@ -66,7 +66,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
 .about{background:var(--off-white)}
 .about-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;margin-bottom:3rem}
 .about-image{position:relative}
-.about-image img{width:100%;height:500px;object-fit:cover;box-shadow:0 20px 60px rgba(27,38,79,.15)}
+.about-image img{width:100%;height:500px;object-fit:cover;box-shadow:0 20px 60px rgba(27,38,79,.15);filter:grayscale(100%)}
 .about-image::before{content:'';position:absolute;top:-20px;left:-20px;width:100%;height:100%;border:3px solid var(--navy);z-index:-1}
 .about-content h3{font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:1.5rem}
 .about-content p{font-size:1.05rem;color:var(--gray);line-height:1.9;margin-bottom:1.5rem}
@@ -97,7 +97,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
 
 /* TEAM */
 .team{background:var(--navy);color:var(--white);position:relative;overflow:hidden}
-.team::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80') center/cover no-repeat;z-index:0}
+.team::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
 .team::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.9;z-index:1}
 .team .section-header{position:relative;z-index:2}
 .team .section-title{color:var(--white)}
@@ -108,7 +108,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
 .team-cta a:hover{background:var(--off-white);transform:translateY(-2px)}
 .team-card{background:rgba(255,255,255,.05);padding:2.5rem 2rem;text-align:center;transition:all .3s;border-top:3px solid transparent}
 .team-card:hover{background:rgba(255,255,255,.08);border-top-color:var(--white);transform:translateY(-5px)}
-.team-photo{width:150px;height:150px;border-radius:50%;margin:0 auto 1.5rem;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--navy);font-weight:800}
+.team-photo{width:150px;height:150px;border-radius:50%;margin:0 auto 1.5rem;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--navy);font-weight:800;background-size:cover;background-position:center;border:4px solid var(--white);filter:grayscale(100%)}
 .team-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
 .team-card .title{font-size:.9rem;color:var(--white);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;opacity:.8}
 .team-card p{font-size:.95rem;color:rgba(255,255,255,.8);line-height:1.7}
@@ -364,19 +364,19 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
   </div>
   <div class="team-grid">
     <div class="team-card">
-      <div class="team-photo">MJ</div>
+      <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80')"></div>
       <h3>Micaela Jofré</h3>
       <p class="title">Abogada</p>
       <p>Especializada en Derecho de Familia, Civil, Comercial y Penal. Integra los Consultorios Jurídicos Gratuitos de la UNLP con fuerte vocación social.</p>
     </div>
     <div class="team-card">
-      <div class="team-photo">JP</div>
+      <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80')"></div>
       <h3>Juliana Palacios</h3>
       <p class="title">Abogada</p>
       <p>Especializada en Derecho Laboral y Penal. Asesora a trabajadores y sindicatos. Colaboradora activa de la UNLP y del Club Gimnasia y Esgrima La Plata.</p>
     </div>
     <div class="team-card">
-      <div class="team-photo">SO</div>
+      <div class="team-photo" style="background-image:url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80')"></div>
       <h3>Sebastián Otamendi</h3>
       <p class="title">Abogado</p>
       <p>Especializado en Derecho Comercial, Societario, Contratos y Marcas. Participante del Congreso Nacional de Derecho Societario. Colaborador de la UNLP.</p>
