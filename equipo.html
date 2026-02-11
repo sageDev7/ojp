@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipo – OJP Estudio Jurídico | La Plata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1b264f;--white:#fefefe;--navy-light:#2a3a6b;--navy-dark:#0f1629;
+  --gray:#6b7280;--light-gray:#e5e7eb;--off-white:#f9fafb
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden;line-height:1.6}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;width:100%;background:transparent;z-index:1000;transition:all .3s}
+.header.scrolled{background:var(--navy);box-shadow:0 2px 10px rgba(27,38,79,.3)}
+.header-container{max-width:1400px;margin:0 auto;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:60px;width:auto;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.02em;transition:color .3s;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:rgba(255,255,255,.7)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:25px;height:3px;background:var(--white);transition:.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+.mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(27,38,79,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.mobile-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-nav a{color:var(--white);text-decoration:none;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.mobile-nav a:hover{color:var(--navy-light)}
+
+/* HERO */
+.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;color:var(--white);padding:120px 3rem 80px;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.85;z-index:1}
+.hero-container{max-width:1000px;margin:0 auto;position:relative;z-index:2}
+.hero-content h1{font-size:clamp(3rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:2rem;letter-spacing:-.02em}
+.hero-subtitle{font-size:1.4rem;font-weight:300;line-height:1.7;margin-bottom:3rem;opacity:.95;max-width:800px;margin-left:auto;margin-right:auto}
+
+/* SECTION */
+.section{padding:6rem 3rem}
+.section-header{text-align:center;max-width:800px;margin:0 auto 4rem}
+.section-label{font-size:.85rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--navy);margin-bottom:1rem;line-height:1.2}
+.section-subtitle{font-size:1.1rem;color:var(--gray);line-height:1.7}
+
+/* INTRO TEAM */
+.intro-team{background:var(--off-white)}
+.intro-team-content{max-width:800px;margin:0 auto;text-align:center}
+.intro-team-content p{font-size:1.1rem;color:var(--gray);line-height:1.9}
+
+/* TEAM GRID */
+.team-grid-section{background:var(--white);padding:6rem 3rem}
+.team-grid-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:4rem}
+.team-card-large{position:relative;transition:all .3s}
+.team-card-photo{width:100%;height:450px;object-fit:cover;filter:grayscale(100%);margin-bottom:2rem;transition:all .4s}
+.team-card-large:hover .team-card-photo{filter:grayscale(0%);transform:scale(1.02)}
+.team-card-large h3{font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:.5rem}
+.team-card-large .role{font-size:.9rem;color:var(--gray);text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:1.5rem;display:block}
+.team-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.team-tag{font-size:.8rem;color:var(--navy);font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:.4rem 0;border-bottom:2px solid var(--navy)}
+.team-card-large p{font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:1rem}
+.team-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--navy);font-weight:600;font-size:.9rem;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;margin-top:1rem;transition:all .3s}
+.team-link i{transition:transform .3s}
+.team-link:hover{color:var(--navy-dark)}
+.team-link:hover i{transform:translateX(5px)}
+
+/* EXPERIENCE SECTION */
+.experience-section{background:var(--off-white);padding:6rem 3rem}
+.experience-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3rem}
+.experience-card{background:var(--white);padding:2.5rem;box-shadow:0 5px 20px rgba(27,38,79,.08);transition:all .3s}
+.experience-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(27,38,79,.12)}
+.experience-icon{width:60px;height:60px;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+.experience-card h3{font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:1rem}
+.experience-card ul{list-style:none;padding:0}
+.experience-card ul li{font-size:.95rem;color:var(--gray);line-height:1.8;padding-left:1.2rem;position:relative;margin-bottom:.8rem}
+.experience-card ul li:before{content:'';position:absolute;left:0;top:.7rem;width:6px;height:6px;background:var(--navy);border-radius:50%}
+
+/* CTA */
+.cta{background:var(--white);color:var(--navy);text-align:center;padding:5rem 3rem}
+.cta-container{max-width:900px;margin:0 auto}
+.cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:1.5rem;line-height:1.2}
+.cta p{font-size:1.2rem;margin-bottom:2.5rem;opacity:.9}
+.cta-button{display:inline-flex;align-items:center;gap:1rem;padding:1.2rem 2.5rem;background:var(--navy);color:var(--white);text-decoration:none;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .3s}
+.cta-button:hover{background:var(--navy-dark);transform:translateY(-3px);box-shadow:0 10px 30px rgba(27,38,79,.2)}
+
+/* FOOTER */
+.footer{background:var(--navy);color:var(--white);padding:4rem 3rem 2rem}
+.footer-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-brand h3{font-size:1.8rem;font-weight:800;margin-bottom:1rem;color:var(--white)}
+.footer-brand p{color:rgba(255,255,255,.7);line-height:1.8;font-size:.95rem}
+.footer-col h4{font-size:1.05rem;font-weight:700;margin-bottom:1.5rem;color:var(--white);letter-spacing:.05em;text-transform:uppercase}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.9rem}
+.footer-col a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .3s;font-size:.9rem}
+.footer-col a:hover{color:var(--white)}
+.footer-info{display:flex;flex-direction:column;gap:.8rem}
+.footer-info-item{display:flex;align-items:start;gap:.8rem;color:rgba(255,255,255,.8);font-size:.9rem}
+.footer-info-item i{color:var(--white);margin-top:.2rem}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:.9rem}
+.footer-bottom a{color:var(--white);text-decoration:none;transition:color .3s}
+.footer-bottom a:hover{color:rgba(255,255,255,.8)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .team-grid-container{grid-template-columns:1fr;max-width:600px;margin:0 auto}
+  .experience-grid{grid-template-columns:1fr;max-width:600px;margin:0 auto}
+  .footer-container{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .header-container{padding:1rem 1.5rem;justify-content:center;position:relative}
+  .logo{margin:0 auto;opacity:0;transition:opacity .3s}
+  .header.scrolled .logo{opacity:1}
+  .logo img{height:50px}
+  .hamburger{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);z-index:10;display:flex}
+  .nav-links{display:none}
+  .section{padding:4rem 1.5rem}
+  .hero{min-height:60vh;padding:100px 1.5rem 60px}
+  .team-grid-section{padding:4rem 1.5rem}
+  .experience-section{padding:4rem 1.5rem}
+  .team-card-photo{height:350px}
+  .footer-container{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .footer-info-item{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="OJP Estudio Jurídico">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="equipo.html" class="active">Equipo</a>
+      <a href="areas.html">Áreas</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="equipo.html">Equipo</a>
+  <a href="areas.html">Áreas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Nuestro Equipo</h1>
+      <p class="hero-subtitle">Conocé a los profesionales que integran OJP Estudio Jurídico y sus áreas de especialización</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section intro-team">
+  <div class="section-header">
+    <div class="section-label">Equipo</div>
+    <h2 class="section-title">Nuestros Profesionales</h2>
+  </div>
+  <div class="intro-team-content">
+    <p>Tres abogados especializados unidos por la excelencia profesional, el compromiso social y la formación continua. Cada uno aporta su experiencia única para ofrecer un servicio jurídico integral de máxima calidad.</p>
+  </div>
+</section>
+
+<!-- TEAM GRID -->
+<section class="team-grid-section">
+  <div class="team-grid-container">
+    <!-- MICAELA JOFRÉ -->
+    <div class="team-card-large">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Micaela Jofré" class="team-card-photo">
+      <h3>Micaela Jofré</h3>
+      <span class="role">Abogada · Socia Fundadora</span>
+      <div class="team-tags">
+        <span class="team-tag">Familia</span>
+        <span class="team-tag">Civil</span>
+        <span class="team-tag">Comercial</span>
+        <span class="team-tag">Penal</span>
+      </div>
+      <p>Especializada en Derecho de Familia con enfoque humano y personalizado. Integra los Consultorios Jurídicos Gratuitos de la UNLP con fuerte vocación social.</p>
+      <p>Su trayectoria la ha convertido en referente para divorcios, regímenes de visitas, alimentos y sucesiones, siempre con acompañamiento empático e integral.</p>
+    </div>
+
+    <!-- JULIANA PALACIOS -->
+    <div class="team-card-large">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80" alt="Juliana Palacios" class="team-card-photo">
+      <h3>Juliana Palacios</h3>
+      <span class="role">Abogada · Socia Fundadora</span>
+      <div class="team-tags">
+        <span class="team-tag">Laboral</span>
+        <span class="team-tag">Penal</span>
+        <span class="team-tag">Sindical</span>
+      </div>
+      <p>Defensora comprometida de derechos laborales. Asesora a trabajadores y sindicatos en despidos, accidentes de trabajo y negociaciones colectivas.</p>
+      <p>Colabora activamente con la UNLP y desarrolla labor solidaria en el Club Gimnasia y Esgrima La Plata, demostrando su vocación de servicio.</p>
+    </div>
+
+    <!-- SEBASTIÁN OTAMENDI -->
+    <div class="team-card-large">
+      <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" alt="Sebastián Otamendi" class="team-card-photo">
+      <h3>Sebastián Otamendi</h3>
+      <span class="role">Abogado · Socio Fundador</span>
+      <div class="team-tags">
+        <span class="team-tag">Comercial</span>
+        <span class="team-tag">Societario</span>
+        <span class="team-tag">Contratos</span>
+        <span class="team-tag">Marcas</span>
+      </div>
+      <p>Experto en asesoramiento a empresas y emprendedores. Especializado en constitución de sociedades, contratos y registración de marcas.</p>
+      <p>Docente en UNLP y participante del Congreso Nacional de Derecho Societario (Tucumán 2025). Combina práctica profesional con formación académica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCIA -->
+<section class="experience-section">
+  <div class="section-header">
+    <div class="section-label">Experiencia</div>
+    <h2 class="section-title">Áreas de Especialización</h2>
+    <p class="section-subtitle">Conocimiento profundo en múltiples ramas del derecho con enfoque práctico y actualizado</p>
+  </div>
+  <div class="experience-grid">
+    <div class="experience-card">
+      <div class="experience-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <h3>Derecho de Familia y Civil</h3>
+      <ul>
+        <li>Divorcios y separaciones</li>
+        <li>Regímenes de visitas y alimentos</li>
+        <li>Sucesiones hereditarias</li>
+        <li>Violencia de género</li>
+        <li>Contratos civiles</li>
+      </ul>
+    </div>
+
+    <div class="experience-card">
+      <div class="experience-icon">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <h3>Derecho Laboral y Sindical</h3>
+      <ul>
+        <li>Despidos injustificados</li>
+        <li>Accidentes de trabajo</li>
+        <li>Negociación colectiva</li>
+        <li>Liquidaciones laborales</li>
+        <li>Discriminación laboral</li>
+      </ul>
+    </div>
+
+    <div class="experience-card">
+      <div class="experience-icon">
+        <i class="fas fa-building"></i>
+      </div>
+      <h3>Derecho Comercial y Societario</h3>
+      <ul>
+        <li>Constitución de sociedades</li>
+        <li>Contratos comerciales</li>
+        <li>Marcas y patentes (INPI)</li>
+        <li>Startups y emprendedores</li>
+        <li>Reformas estatutarias</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-container">
+    <h2>¿Necesitás Asesoramiento Legal?</h2>
+    <p>Agendá una consulta con nuestro equipo de profesionales. Te acompañamos en cada paso del proceso.</p>
+    <a href="contacto.html" class="cta-button">
+      CONTACTANOS AHORA
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="./logo.png" alt="OJP" style="width:120px;height:auto;margin-bottom:1rem;filter:brightness(0) invert(1)">
+      <p>Estudio jurídico integral especializado en múltiples ramas del derecho. Acompañamiento personalizado y profesional en La Plata.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="areas.html">Áreas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Áreas</h4>
+      <ul>
+        <li><a href="areas.html#familia">Familia</a></li>
+        <li><a href="areas.html#civil">Civil</a></li>
+        <li><a href="areas.html#comercial">Comercial</a></li>
+        <li><a href="areas.html#laboral">Laboral</a></li>
+        <li><a href="areas.html#penal">Penal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-info">
+        <div class="footer-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</span>
+        </div>
+        <div class="footer-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Lun a Vie: 9 a 14 hs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 OJP Estudio Jurídico Integral · Otamendi · Jofré · Palacios | Desarrollado por <a href="https://instagram.com/sageedev" target="_blank">@sageedev</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const header=document.getElementById('header');
+  const hamburger=document.getElementById('hamburger');
+  const mobileNav=document.getElementById('mobileNav');
+  
+  // Scroll para cambiar navbar
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>50){
+      header.classList.add('scrolled');
+    }else{
+      header.classList.remove('scrolled');
+    }
+  });
+  
+  // Mobile menu
+  hamburger.addEventListener('click',()=>{
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+  });
+  
+  document.querySelectorAll('.mobile-nav a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+    });
+  });
+});
+</script>
+</body>
+</html>

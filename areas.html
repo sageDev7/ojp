@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Áreas de Práctica – OJP Estudio Jurídico | La Plata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1b264f;--white:#fefefe;--navy-light:#2a3a6b;--navy-dark:#0f1629;
+  --gray:#6b7280;--light-gray:#e5e7eb;--off-white:#f9fafb
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden;line-height:1.6}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;width:100%;background:transparent;z-index:1000;transition:all .3s}
+.header.scrolled{background:var(--navy);box-shadow:0 2px 10px rgba(27,38,79,.3)}
+.header-container{max-width:1400px;margin:0 auto;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:60px;width:auto;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.02em;transition:color .3s;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:rgba(255,255,255,.7)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:25px;height:3px;background:var(--white);transition:.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+.mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(27,38,79,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.mobile-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-nav a{color:var(--white);text-decoration:none;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.mobile-nav a:hover{color:var(--navy-light)}
+
+/* HERO */
+.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;color:var(--white);padding:120px 3rem 80px;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.85;z-index:1}
+.hero-container{max-width:1000px;margin:0 auto;position:relative;z-index:2}
+.hero-content h1{font-size:clamp(3rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:2rem;letter-spacing:-.02em}
+.hero-subtitle{font-size:1.4rem;font-weight:300;line-height:1.7;opacity:.95;max-width:800px;margin:0 auto}
+
+/* SECTION */
+.section{padding:6rem 3rem}
+.section-header{text-align:center;max-width:800px;margin:0 auto 4rem}
+.section-label{font-size:.85rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--navy);margin-bottom:1rem;line-height:1.2}
+.section-subtitle{font-size:1.1rem;color:var(--gray);line-height:1.7}
+
+/* AREAS OVERVIEW */
+.areas-overview{background:var(--off-white)}
+.areas-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.area-card{background:var(--white);padding:2.5rem 2rem;transition:all .3s;border-bottom:3px solid transparent;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block}
+.area-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);transform:translateY(100%);transition:transform .3s;z-index:0}
+.area-card:hover::before{transform:translateY(0)}
+.area-card:hover{border-bottom-color:var(--navy)}
+.area-card>*{position:relative;z-index:1;transition:color .3s}
+.area-icon{font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;display:block}
+.area-card h3{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:1rem}
+.area-card p{font-size:.9rem;color:var(--gray);line-height:1.7}
+.area-card:hover .area-icon{color:var(--white)}
+.area-card:hover h3,.area-card:hover p{color:var(--white)}
+
+/* AREAS DETAIL */
+.area-detail{padding:6rem 3rem}
+.area-detail:nth-child(even){background:var(--off-white)}
+.area-detail:nth-child(odd){background:var(--white)}
+.area-detail-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.area-detail:nth-child(even) .area-detail-container{direction:rtl}
+.area-detail:nth-child(even) .area-detail-container>*{direction:ltr}
+.area-detail-image{position:relative}
+.area-detail-image img{width:100%;height:420px;object-fit:cover;filter:grayscale(100%);box-shadow:0 20px 60px rgba(27,38,79,.15)}
+.area-detail-image::before{content:'';position:absolute;top:-15px;left:-15px;width:100%;height:100%;border:3px solid var(--navy);z-index:-1}
+.area-detail:nth-child(even) .area-detail-image::before{left:auto;right:-15px}
+.area-detail-content .section-label{text-align:left}
+.area-detail-content h2{font-size:2.2rem;font-weight:800;color:var(--navy);margin-bottom:1.5rem;line-height:1.2}
+.area-detail-content p{font-size:1.05rem;color:var(--gray);line-height:1.9;margin-bottom:1.5rem}
+.area-detail-list{list-style:none;padding:0;margin-top:1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.area-detail-list li{font-size:.95rem;color:var(--gray);padding-left:1.2rem;position:relative}
+.area-detail-list li:before{content:'';position:absolute;left:0;top:.55rem;width:6px;height:6px;background:var(--navy);transform:rotate(45deg)}
+.area-professional{display:inline-flex;align-items:center;gap:.8rem;margin-top:2rem;padding:1rem 1.5rem;background:var(--off-white);border-left:3px solid var(--navy)}
+.area-detail:nth-child(even) .area-professional{background:var(--white)}
+.area-professional i{color:var(--navy);font-size:1rem}
+.area-professional span{font-size:.9rem;color:var(--navy);font-weight:600}
+
+/* CTA */
+.cta{background:var(--navy);color:var(--white);text-align:center;padding:5rem 3rem;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
+.cta::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.92;z-index:1}
+.cta-container{max-width:900px;margin:0 auto;position:relative;z-index:2}
+.cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:1.5rem;line-height:1.2;color:var(--white)}
+.cta p{font-size:1.2rem;margin-bottom:2.5rem;color:rgba(255,255,255,.9)}
+.cta-button{display:inline-flex;align-items:center;gap:1rem;padding:1.2rem 2.5rem;background:var(--white);color:var(--navy);text-decoration:none;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .3s}
+.cta-button:hover{background:var(--off-white);transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,255,255,.2)}
+
+/* FOOTER */
+.footer{background:var(--navy);color:var(--white);padding:4rem 3rem 2rem}
+.footer-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-brand p{color:rgba(255,255,255,.7);line-height:1.8;font-size:.95rem}
+.footer-col h4{font-size:1.05rem;font-weight:700;margin-bottom:1.5rem;color:var(--white);letter-spacing:.05em;text-transform:uppercase}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.9rem}
+.footer-col a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .3s;font-size:.9rem}
+.footer-col a:hover{color:var(--white)}
+.footer-info{display:flex;flex-direction:column;gap:.8rem}
+.footer-info-item{display:flex;align-items:start;gap:.8rem;color:rgba(255,255,255,.8);font-size:.9rem}
+.footer-info-item i{color:var(--white);margin-top:.2rem}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:.9rem}
+.footer-bottom a{color:var(--white);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .areas-grid{grid-template-columns:repeat(2,1fr)}
+  .area-detail-container{grid-template-columns:1fr;gap:3rem;direction:ltr!important}
+  .area-detail:nth-child(even) .area-detail-container>*{direction:ltr}
+  .area-detail-image{max-width:600px;margin:0 auto}
+  .area-detail-image::before{left:-15px!important;right:auto!important}
+  .area-detail-content .section-label{text-align:center}
+  .area-detail-content h2{text-align:center}
+  .area-detail-content p{text-align:center}
+  .area-detail-list{justify-items:start;max-width:500px;margin:1.5rem auto 0}
+  .area-professional{margin:2rem auto 0}
+  .footer-container{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .header-container{padding:1rem 1.5rem;justify-content:center;position:relative}
+  .logo{margin:0 auto;opacity:0;transition:opacity .3s}
+  .header.scrolled .logo{opacity:1}
+  .logo img{height:50px}
+  .hamburger{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);z-index:10;display:flex}
+  .nav-links{display:none}
+  .section{padding:4rem 1.5rem}
+  .hero{min-height:60vh;padding:100px 1.5rem 60px}
+  .area-detail{padding:4rem 1.5rem}
+  .area-detail-image img{height:300px}
+  .areas-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
+  .area-card{text-align:center}
+  .area-detail-list{grid-template-columns:1fr}
+  .footer-container{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .footer-info-item{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="OJP Estudio Jurídico">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="areas.html" class="active">Áreas</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="equipo.html">Equipo</a>
+  <a href="areas.html">Áreas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Áreas de Práctica</h1>
+      <p class="hero-subtitle">Cobertura legal completa en las principales ramas del derecho con profesionales especializados en cada área</p>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW GRID -->
+<section class="section areas-overview">
+  <div class="section-header">
+    <div class="section-label">Servicios</div>
+    <h2 class="section-title">¿En qué podemos ayudarte?</h2>
+    <p class="section-subtitle">Ocho áreas de especialización para dar respuesta a cualquier necesidad jurídica</p>
+  </div>
+  <div class="areas-grid">
+    <a href="#familia" class="area-card">
+      <i class="fas fa-heart area-icon"></i>
+      <h3>Derecho de Familia</h3>
+      <p>Divorcios, alimentos, régimen de visitas, adopciones y violencia familiar</p>
+    </a>
+    <a href="#civil" class="area-card">
+      <i class="fas fa-file-contract area-icon"></i>
+      <h3>Derecho Civil</h3>
+      <p>Contratos, sucesiones, daños y perjuicios, propiedad horizontal</p>
+    </a>
+    <a href="#comercial" class="area-card">
+      <i class="fas fa-building area-icon"></i>
+      <h3>Derecho Comercial</h3>
+      <p>Asesoramiento comercial, títulos valores, concursos y quiebras</p>
+    </a>
+    <a href="#laboral" class="area-card">
+      <i class="fas fa-briefcase area-icon"></i>
+      <h3>Derecho Laboral</h3>
+      <p>Despidos, accidentes laborales, asesoramiento a trabajadores y sindicatos</p>
+    </a>
+    <a href="#penal" class="area-card">
+      <i class="fas fa-gavel area-icon"></i>
+      <h3>Derecho Penal</h3>
+      <p>Defensa penal, querellas, violencia de género, delitos económicos</p>
+    </a>
+    <a href="#societario" class="area-card">
+      <i class="fas fa-users area-icon"></i>
+      <h3>Derecho Societario</h3>
+      <p>Constitución de sociedades, contratos societarios, reestructuraciones</p>
+    </a>
+    <a href="#contratos" class="area-card">
+      <i class="fas fa-pen-nib area-icon"></i>
+      <h3>Contratos</h3>
+      <p>Redacción, análisis y gestión de todo tipo de contratos comerciales</p>
+    </a>
+    <a href="#marcas" class="area-card">
+      <i class="fas fa-trademark area-icon"></i>
+      <h3>Registración de Marcas</h3>
+      <p>Búsqueda, registro y defensa de marcas comerciales</p>
+    </a>
+  </div>
+</section>
+
+<!-- DETALLE: FAMILIA -->
+<section class="area-detail" id="familia">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" alt="Derecho de Familia">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Derecho de Familia</h2>
+      <p>El derecho de familia abarca algunas de las situaciones más sensibles de la vida de las personas. En OJP abordamos cada caso con empatía, confidencialidad y compromiso, acompañando a nuestros clientes en momentos difíciles con estrategias legales efectivas y un trato humano.</p>
+      <p>Brindamos asesoramiento y representación en todos los procesos vinculados a la organización familiar, desde los acuerdos preventivos hasta los conflictos más complejos.</p>
+      <ul class="area-detail-list">
+        <li>Divorcios y separaciones</li>
+        <li>Régimen de comunicación</li>
+        <li>Cuota alimentaria</li>
+        <li>Cuidado personal de hijos</li>
+        <li>Violencia familiar y de género</li>
+        <li>Adopciones</li>
+        <li>Uniones convivenciales</li>
+        <li>Bien de familia</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialista: Micaela Jofré</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: CIVIL -->
+<section class="area-detail" id="civil">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Derecho Civil">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Derecho Civil</h2>
+      <p>El derecho civil regula las relaciones entre particulares en los aspectos fundamentales de la vida cotidiana: la propiedad, las obligaciones, las sucesiones y los contratos. Contamos con amplia experiencia en la resolución de conflictos civiles, tanto en sede judicial como extrajudicial.</p>
+      <p>Ofrecemos asesoramiento preventivo y representación en juicio para proteger los derechos de nuestros clientes en todas las materias del derecho civil.</p>
+      <ul class="area-detail-list">
+        <li>Sucesiones y herencias</li>
+        <li>Daños y perjuicios</li>
+        <li>Propiedad horizontal</li>
+        <li>Usucapión</li>
+        <li>Contratos civiles</li>
+        <li>Responsabilidad civil</li>
+        <li>Derechos reales</li>
+        <li>Locaciones urbanas</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialista: Micaela Jofré</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: COMERCIAL -->
+<section class="area-detail" id="comercial">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="Derecho Comercial">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Derecho Comercial</h2>
+      <p>El derecho comercial regula la actividad empresarial en su conjunto. Asesoramos a empresas, comerciantes y emprendedores en todas las etapas de su actividad, desde la planificación inicial hasta la resolución de conflictos, ofreciendo soluciones prácticas y orientadas al negocio.</p>
+      <p>Nuestro enfoque combina rigor jurídico con comprensión de la realidad empresarial, para que las decisiones legales siempre estén alineadas con los objetivos del cliente.</p>
+      <ul class="area-detail-list">
+        <li>Asesoramiento empresarial</li>
+        <li>Títulos valores</li>
+        <li>Concursos y quiebras</li>
+        <li>Contratos mercantiles</li>
+        <li>Defensa del consumidor</li>
+        <li>Competencia desleal</li>
+        <li>Franquicias</li>
+        <li>Compraventa mercantil</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialistas: Sebastián Otamendi · Micaela Jofré</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: LABORAL -->
+<section class="area-detail" id="laboral">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80" alt="Derecho Laboral">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Derecho Laboral</h2>
+      <p>La defensa de los derechos laborales es uno de los pilares de nuestro estudio. Asesoramos tanto a trabajadores individuales como a organizaciones sindicales, con un enfoque comprometido y especializado en la protección de los derechos de quienes más lo necesitan.</p>
+      <p>Intervenimos en todas las etapas del conflicto laboral: desde la negociación previa hasta la representación en juicio, buscando siempre la solución más favorable para nuestros clientes.</p>
+      <ul class="area-detail-list">
+        <li>Despidos y liquidaciones</li>
+        <li>Accidentes de trabajo</li>
+        <li>Enfermedades profesionales</li>
+        <li>Negociación colectiva</li>
+        <li>Asesoramiento sindical</li>
+        <li>Certificaciones de servicios</li>
+        <li>Violencia y acoso laboral</li>
+        <li>Discriminación laboral</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialista: Juliana Palacios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: PENAL -->
+<section class="area-detail" id="penal">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?w=800&q=80" alt="Derecho Penal">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Derecho Penal</h2>
+      <p>En materia penal, la elección del profesional es determinante. Nuestro equipo brinda defensa técnica y representación como querellantes con solidez, discreción y compromiso absoluto, garantizando los derechos constitucionales de nuestros clientes en cada etapa del proceso.</p>
+      <p>Actuamos con rapidez y eficacia desde el primer momento, conscientes de que en el derecho penal los tiempos son cruciales para la protección de los derechos de quienes nos confían su caso.</p>
+      <ul class="area-detail-list">
+        <li>Defensa penal en juicio</li>
+        <li>Querellas criminales</li>
+        <li>Violencia de género</li>
+        <li>Delitos económicos</li>
+        <li>Excarcelaciones y exenciones</li>
+        <li>Recursos de apelación y casación</li>
+        <li>Mediación penal</li>
+        <li>Delitos contra la propiedad</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialistas: Juliana Palacios · Micaela Jofré</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: SOCIETARIO -->
+<section class="area-detail" id="societario">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80" alt="Derecho Societario">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Derecho Societario</h2>
+      <p>Acompañamos a empresas en todas las etapas de su vida societaria: desde la constitución hasta la disolución, pasando por restructuraciones, modificaciones estatutarias y conflictos entre socios. Nuestra experiencia incluye la participación en el Congreso Nacional de Derecho Societario 2025.</p>
+      <p>Asesoramos a emprendedores, startups, pymes y grandes empresas con soluciones jurídicas prácticas, actualizadas y adaptadas a cada tipo de estructura empresarial.</p>
+      <ul class="area-detail-list">
+        <li>Constitución de SA, SRL, SAS</li>
+        <li>Reformas estatutarias</li>
+        <li>Asambleas y reuniones de socios</li>
+        <li>Conflictos societarios</li>
+        <li>Fusiones y escisiones</li>
+        <li>Disolución y liquidación</li>
+        <li>Pactos de socios</li>
+        <li>Due diligence societario</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialista: Sebastián Otamendi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: CONTRATOS -->
+<section class="area-detail" id="contratos">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="Contratos">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Contratos</h2>
+      <p>Un contrato bien redactado es la mejor prevención ante futuros conflictos. Redactamos, revisamos y negociamos todo tipo de contratos civiles y comerciales, asegurándonos de que cada cláusula proteja los intereses de nuestros clientes y cumpla con la normativa vigente.</p>
+      <p>Brindamos asesoramiento tanto en la etapa precontractual como en la ejecución del contrato y en la resolución de conflictos derivados del incumplimiento.</p>
+      <ul class="area-detail-list">
+        <li>Contratos de compraventa</li>
+        <li>Contratos de locación</li>
+        <li>Contratos de trabajo</li>
+        <li>Contratos de servicios</li>
+        <li>Contratos asociativos</li>
+        <li>Contratos de distribución</li>
+        <li>Cartas de intención</li>
+        <li>Acuerdos de confidencialidad</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialista: Sebastián Otamendi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETALLE: MARCAS -->
+<section class="area-detail" id="marcas">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80" alt="Registración de Marcas">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Registración de Marcas</h2>
+      <p>La marca es uno de los activos más valiosos de cualquier empresa o emprendimiento. Asesoramos en todo el proceso de búsqueda, registro y defensa de marcas comerciales ante el Instituto Nacional de la Propiedad Industrial (INPI), protegiendo la identidad y el valor de la marca de nuestros clientes.</p>
+      <p>Gestionamos el proceso completo, desde la búsqueda de antecedentes hasta la obtención del certificado de registro, y defendemos la marca ante cualquier oposición o violación.</p>
+      <ul class="area-detail-list">
+        <li>Búsqueda de antecedentes marcarios</li>
+        <li>Solicitud de registro ante INPI</li>
+        <li>Seguimiento del trámite</li>
+        <li>Oposiciones marcarias</li>
+        <li>Renovaciones de marca</li>
+        <li>Cesión y licencia de marcas</li>
+        <li>Defensa ante infracciones</li>
+        <li>Marcas internacionales</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Especialista: Sebastián Otamendi</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-container">
+    <h2>¿Necesitás Asesoramiento Legal?</h2>
+    <p>Agendá una consulta con nuestro equipo de profesionales. Te acompañamos en cada paso del proceso.</p>
+    <a href="contacto.html" class="cta-button">
+      CONTACTANOS AHORA
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="./logo.png" alt="OJP" style="width:120px;height:auto;margin-bottom:1rem;filter:brightness(0) invert(1)">
+      <p>Estudio jurídico integral especializado en múltiples ramas del derecho. Acompañamiento personalizado y profesional en La Plata.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="areas.html">Áreas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Áreas</h4>
+      <ul>
+        <li><a href="#familia">Familia</a></li>
+        <li><a href="#civil">Civil</a></li>
+        <li><a href="#comercial">Comercial</a></li>
+        <li><a href="#laboral">Laboral</a></li>
+        <li><a href="#penal">Penal</a></li>
+        <li><a href="#societario">Societario</a></li>
+        <li><a href="#contratos">Contratos</a></li>
+        <li><a href="#marcas">Marcas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-info">
+        <div class="footer-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</span>
+        </div>
+        <div class="footer-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Lun a Vie: 9 a 14 hs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 OJP Estudio Jurídico Integral · Otamendi · Jofré · Palacios | Desarrollado por <a href="https://instagram.com/sageedev" target="_blank">@sageedev</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const header=document.getElementById('header');
+  const hamburger=document.getElementById('hamburger');
+  const mobileNav=document.getElementById('mobileNav');
+  
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>50){
+      header.classList.add('scrolled');
+    }else{
+      header.classList.remove('scrolled');
+    }
+  });
+  
+  hamburger.addEventListener('click',()=>{
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+  });
+  
+  document.querySelectorAll('.mobile-nav a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nosotros – OJP Estudio Jurídico | La Plata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1b264f;--white:#fefefe;--navy-light:#2a3a6b;--navy-dark:#0f1629;
+  --gray:#6b7280;--light-gray:#e5e7eb;--off-white:#f9fafb
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden;line-height:1.6}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;width:100%;background:transparent;z-index:1000;transition:all .3s}
+.header.scrolled{background:var(--navy);box-shadow:0 2px 10px rgba(27,38,79,.3)}
+.header-container{max-width:1400px;margin:0 auto;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:60px;width:auto;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.02em;transition:color .3s;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:rgba(255,255,255,.7)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:25px;height:3px;background:var(--white);transition:.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+.mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(27,38,79,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.mobile-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-nav a{color:var(--white);text-decoration:none;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.mobile-nav a:hover{color:var(--navy-light)}
+
+/* HERO */
+.hero{min-height:70vh;display:flex;align-items:center;justify-content:center;color:var(--white);padding:120px 3rem 80px;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.85;z-index:1}
+.hero-container{max-width:1000px;margin:0 auto;position:relative;z-index:2}
+.hero-content h1{font-size:clamp(3rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:2rem;letter-spacing:-.02em}
+.hero-subtitle{font-size:1.4rem;font-weight:300;line-height:1.7;margin-bottom:3rem;opacity:.95;max-width:800px;margin-left:auto;margin-right:auto}
+
+/* SECTION */
+.section{padding:6rem 3rem}
+.section-header{text-align:center;max-width:800px;margin:0 auto 4rem}
+.section-label{font-size:.85rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
+.section-title{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--navy);margin-bottom:1rem;line-height:1.2}
+.section-subtitle{font-size:1.1rem;color:var(--gray);line-height:1.7}
+
+/* INTRO */
+.intro{background:var(--off-white)}
+.intro-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.intro-image{position:relative}
+.intro-image img{width:100%;height:500px;object-fit:cover;box-shadow:0 20px 60px rgba(27,38,79,.15);filter:grayscale(100%)}
+.intro-image::before{content:'';position:absolute;top:-20px;left:-20px;width:100%;height:100%;border:3px solid var(--navy);z-index:-1}
+.intro-content h3{font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:1.5rem}
+.intro-content p{font-size:1.05rem;color:var(--gray);line-height:1.9;margin-bottom:1.5rem}
+
+/* VALORES */
+.valores{background:var(--white)}
+.valores-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.valor-card{background:var(--off-white);padding:2.5rem 2rem;transition:all .3s;border-bottom:3px solid transparent;position:relative;overflow:hidden}
+.valor-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);transform:translateY(100%);transition:transform .3s;z-index:0}
+.valor-card:hover::before{transform:translateY(0)}
+.valor-card:hover{border-bottom-color:var(--navy)}
+.valor-card>*{position:relative;z-index:1;transition:color .3s}
+.valor-icon{font-size:2.5rem;color:var(--navy);margin-bottom:1.5rem;display:block}
+.valor-card h3{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:1rem}
+.valor-card p{font-size:.9rem;color:var(--gray);line-height:1.7}
+.valor-card:hover .valor-icon{color:var(--white)}
+.valor-card:hover h3,.valor-card:hover p{color:var(--white)}
+
+/* CTA */
+.cta{background:var(--white);color:var(--navy);text-align:center;padding:5rem 3rem}
+.cta-container{max-width:900px;margin:0 auto}
+.cta h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:1.5rem;line-height:1.2}
+.cta p{font-size:1.2rem;margin-bottom:2.5rem;opacity:.9}
+.cta-button{display:inline-flex;align-items:center;gap:1rem;padding:1.2rem 2.5rem;background:var(--navy);color:var(--white);text-decoration:none;font-size:.95rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;transition:all .3s}
+.cta-button:hover{background:var(--navy-dark);transform:translateY(-3px);box-shadow:0 10px 30px rgba(27,38,79,.2)}
+
+/* FOOTER */
+.footer{background:var(--navy);color:var(--white);padding:4rem 3rem 2rem}
+.footer-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-brand h3{font-size:1.8rem;font-weight:800;margin-bottom:1rem;color:var(--white)}
+.footer-brand p{color:rgba(255,255,255,.7);line-height:1.8;font-size:.95rem}
+.footer-col h4{font-size:1.05rem;font-weight:700;margin-bottom:1.5rem;color:var(--white);letter-spacing:.05em;text-transform:uppercase}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.9rem}
+.footer-col a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .3s;font-size:.9rem}
+.footer-col a:hover{color:var(--white)}
+.footer-info{display:flex;flex-direction:column;gap:.8rem}
+.footer-info-item{display:flex;align-items:start;gap:.8rem;color:rgba(255,255,255,.8);font-size:.9rem}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;text-align:center;font-size:.85rem;color:rgba(255,255,255,.6)}
+.footer-bottom a{color:var(--white);text-decoration:none;transition:color .3s}
+.footer-bottom a:hover{color:rgba(255,255,255,.8)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .intro-container{grid-template-columns:1fr;text-align:center}
+  .intro-image{max-width:600px;margin:0 auto}
+  .valores-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-container{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .header-container{padding:1rem 1.5rem;justify-content:center;position:relative}
+  .logo{margin:0 auto;opacity:0;transition:opacity .3s}
+  .header.scrolled .logo{opacity:1}
+  .logo img{height:50px}
+  .hamburger{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);z-index:10;display:flex}
+  .nav-links{display:none}
+  .section{padding:4rem 1.5rem}
+  .hero{min-height:60vh;padding:100px 1.5rem 60px}
+  .intro-container{text-align:center}
+  .intro-image{max-width:100%}
+  .intro-image img{height:400px}
+  .valores-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto}
+  .valor-card{text-align:center}
+  .footer-container{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .footer-info-item{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="OJP Estudio Jurídico">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html" class="active">Nosotros</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="areas.html">Áreas</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="equipo.html">Equipo</a>
+  <a href="areas.html">Áreas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Nuestro Estudio</h1>
+      <p class="hero-subtitle">Profesionales del derecho comprometidos con la excelencia jurídica y el acompañamiento integral de cada cliente</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="section intro">
+  <div class="intro-container">
+    <div class="intro-content">
+      <div class="section-label">Quiénes Somos</div>
+      <h3>OJP – Estudio Jurídico Integral</h3>
+      <p>Somos un estudio jurídico fundado por tres profesionales con una visión compartida: brindar asesoramiento legal de excelencia con un enfoque humano, cercano y personalizado. Unimos nuestras especialidades complementarias para ofrecer un servicio integral que abarca las principales ramas del derecho.</p>
+      <p>Nuestra formación académica en la Universidad Nacional de La Plata nos ha permitido comprender profundamente las necesidades de nuestros clientes y desarrollar estrategias efectivas para cada caso. La vocación de servicio que caracteriza a nuestro equipo se refleja tanto en el compromiso social como en la participación activa en instituciones educativas.</p>
+      <p>Con sede en La Plata, atendemos tanto a particulares como a empresas, brindando soluciones jurídicas en Derecho de Familia, Civil, Comercial, Laboral, Penal, Societario, Contratos y Registración de Marcas. En OJP combinamos experiencia profesional, compromiso social y un abordaje interdisciplinario que nos permite ofrecer soluciones integrales en múltiples ramas del derecho.</p>
+      <p>Nuestro compromiso va más allá del ejercicio profesional. Participamos activamente en congresos especializados, colaboramos con instituciones educativas y mantenemos una formación continua que nos permite estar siempre actualizados en las últimas tendencias y modificaciones legislativas.</p>
+    </div>
+    <div class="intro-image">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Oficina OJP">
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="section valores">
+  <div class="section-header">
+    <div class="section-label">Principios</div>
+    <h2 class="section-title">Nuestros Valores</h2>
+    <p class="section-subtitle">Los pilares que guían nuestra práctica profesional y nuestro compromiso con cada cliente</p>
+  </div>
+  <div class="valores-grid">
+    <div class="valor-card">
+      <i class="fas fa-balance-scale valor-icon"></i>
+      <h3>Abordaje Integral</h3>
+      <p>Trabajamos de manera interdisciplinaria para ofrecer soluciones completas y efectivas a cada situación legal.</p>
+    </div>
+    <div class="valor-card">
+      <i class="fas fa-handshake valor-icon"></i>
+      <h3>Acompañamiento Personalizado</h3>
+      <p>Cada cliente es único. Ofrecemos atención empática y estrategias diseñadas específicamente para sus necesidades.</p>
+    </div>
+    <div class="valor-card">
+      <i class="fas fa-graduation-cap valor-icon"></i>
+      <h3>Compromiso Académico</h3>
+      <p>Mantenemos una formación continua y colaboramos activamente con instituciones educativas.</p>
+    </div>
+    <div class="valor-card">
+      <i class="fas fa-award valor-icon"></i>
+      <h3>Profesionalismo</h3>
+      <p>Actuamos con la máxima ética profesional y rigor técnico en cada caso que asumimos.</p>
+    </div>
+    <div class="valor-card">
+      <i class="fas fa-heart valor-icon"></i>
+      <h3>Vocación Social</h3>
+      <p>Nuestra participación en consultorios jurídicos gratuitos refleja nuestro compromiso con la comunidad.</p>
+    </div>
+    <div class="valor-card">
+      <i class="fas fa-users valor-icon"></i>
+      <h3>Cercanía</h3>
+      <p>Combinamos profesionalismo con un trato humano y accesible, siempre disponibles para nuestros clientes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section class="section intro">
+  <div class="intro-container">
+    <div class="intro-image">
+      <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80" alt="Metodología OJP">
+    </div>
+    <div class="intro-content">
+      <div class="section-label">Nuestra Metodología</div>
+      <h3>Cómo Trabajamos</h3>
+      <p>En OJP creemos que cada caso legal requiere un enfoque personalizado y estratégico. Nuestro método de trabajo se basa en cuatro pilares fundamentales que garantizan resultados efectivos y la satisfacción de nuestros clientes.</p>
+      <p><strong>Escucha activa y comprensión:</strong> Dedicamos tiempo a conocer en profundidad su situación, sus objetivos y sus preocupaciones. Solo comprendiendo realmente su caso podemos diseñar la mejor estrategia legal.</p>
+      <p><strong>Análisis exhaustivo:</strong> Estudiamos meticulosamente cada aspecto jurídico de su consulta, investigamos precedentes y evaluamos todas las alternativas posibles antes de recomendar un curso de acción.</p>
+      <p><strong>Estrategia personalizada:</strong> No existen soluciones genéricas. Diseñamos una estrategia específica para su caso, considerando tanto los aspectos legales como sus circunstancias personales o comerciales.</p>
+      <p><strong>Comunicación constante:</strong> Mantenemos informado al cliente en cada etapa del proceso. Explicamos en términos claros y accesibles cada paso que damos y cada decisión que tomamos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPROMISO SOCIAL Y ACADÉMICO -->
+<section class="section" style="background:var(--off-white)">
+  <div class="section-header">
+    <div class="section-label">Compromiso</div>
+    <h2 class="section-title">Más Allá del Ejercicio Profesional</h2>
+    <p class="section-subtitle">Nuestra vocación de servicio se extiende a la docencia, la formación continua y el aporte a la comunidad</p>
+  </div>
+  <div class="intro-container" style="margin-top:3rem">
+    <div class="intro-content">
+      <h3>Compromiso Social y Vocación de Servicio</h3>
+      <p>En OJP entendemos el derecho como una herramienta de transformación social. Nuestra vocación de servicio se refleja en diversas actividades que van más allá del ejercicio profesional tradicional.</p>
+      <p>Nuestro equipo participa activamente en consultorios jurídicos gratuitos, brindando asesoramiento legal sin cargo a personas en situación de vulnerabilidad económica. Esta labor nos ha permitido desarrollar una profunda sensibilidad social y comprender las necesidades reales de quienes más necesitan acceso a la justicia.</p>
+      <p>Además, colaboramos con distintas instituciones y organizaciones, aportando nuestro conocimiento legal en diferentes ámbitos sociales y deportivos, demostrando un compromiso genuino con la comunidad.</p>
+      <p>Este compromiso social enriquece nuestra práctica profesional y nos recuerda constantemente la importancia de mantener un enfoque humano y accesible en nuestro trabajo.</p>
+      
+      <h3 style="margin-top:2rem">Colaboración Académica y Formación Continua</h3>
+      <p>Nuestro compromiso con la excelencia profesional nos impulsa a mantenernos en permanente formación. Participamos activamente en congresos especializados, jornadas de actualización y actividades académicas que nos permiten estar al día con las últimas modificaciones legislativas y las tendencias jurisprudenciales más recientes.</p>
+      <p>La vinculación académica con la Universidad Nacional de La Plata nos permite estar en contacto con las discusiones teóricas más actuales y aportar nuestra experiencia práctica a la formación de nuevos profesionales del derecho. Esta combinación entre práctica profesional y actividad académica garantiza un servicio de máxima calidad a nuestros clientes.</p>
+    </div>
+    <div class="intro-image">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80" alt="Compromiso académico">
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-container">
+    <h2>¿Necesitás Asesoramiento Legal?</h2>
+    <p>Agendá una consulta con nuestro equipo de profesionales. Te acompañamos en cada paso del proceso.</p>
+    <a href="contacto.html" class="cta-button">
+      CONTACTANOS AHORA
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="./logo.png" alt="OJP" style="width:120px;height:auto;margin-bottom:1rem;filter:brightness(0) invert(1)">
+      <p>Estudio jurídico integral especializado en múltiples ramas del derecho. Acompañamiento personalizado y profesional en La Plata.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="areas.html">Áreas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Áreas</h4>
+      <ul>
+        <li><a href="areas.html#familia">Familia</a></li>
+        <li><a href="areas.html#civil">Civil</a></li>
+        <li><a href="areas.html#comercial">Comercial</a></li>
+        <li><a href="areas.html#laboral">Laboral</a></li>
+        <li><a href="areas.html#penal">Penal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-info">
+        <div class="footer-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</span>
+        </div>
+        <div class="footer-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Lun a Vie: 9 a 14 hs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 OJP Estudio Jurídico Integral · Otamendi · Jofré · Palacios | Desarrollado por <a href="https://instagram.com/sageedev" target="_blank">@sageedev</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const header=document.getElementById('header');
+  const hamburger=document.getElementById('hamburger');
+  const mobileNav=document.getElementById('mobileNav');
+  
+  // Scroll para cambiar navbar
+  window.addEventListener('scroll',()=>{
+    if(window.scrollY>50){
+      header.classList.add('scrolled');
+    }else{
+      header.classList.remove('scrolled');
+    }
+  });
+  
+  // Mobile menu
+  hamburger.addEventListener('click',()=>{
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+  });
+  
+  document.querySelectorAll('.mobile-nav a').forEach(link=>{
+    link.addEventListener('click',()=>{
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+    });
+  });
+});
+</script>
+</body>
+</html>

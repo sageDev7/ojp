@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto – OJP Estudio Jurídico | La Plata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#1b264f;--white:#fefefe;--navy-light:#2a3a6b;--navy-dark:#0f1629;
+  --gray:#6b7280;--light-gray:#e5e7eb;--off-white:#f9fafb
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:hidden}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden;line-height:1.6;max-width:100vw}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;width:100%;background:transparent;z-index:1000;transition:all .3s}
+.header.scrolled{background:var(--navy);box-shadow:0 2px 10px rgba(27,38,79,.3)}
+.header-container{max-width:1400px;margin:0 auto;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:60px;width:auto;filter:brightness(0) invert(1)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--white);text-decoration:none;font-size:.9rem;font-weight:600;letter-spacing:.02em;transition:color .3s;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:rgba(255,255,255,.7)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hamburger span{width:25px;height:3px;background:var(--white);transition:.3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(7px,7px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-7px)}
+.mobile-nav{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(27,38,79,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.mobile-nav.open{display:flex;opacity:1;pointer-events:auto}
+.mobile-nav a{color:var(--white);text-decoration:none;font-size:1.1rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.mobile-nav a:hover{color:var(--navy-light)}
+
+/* HERO */
+.hero{min-height:60vh;display:flex;align-items:center;justify-content:center;color:var(--white);padding:120px 3rem 80px;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80') center/cover no-repeat;filter:grayscale(100%);z-index:0}
+.hero::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);mix-blend-mode:multiply;opacity:.85;z-index:1}
+.hero-container{max-width:1000px;margin:0 auto;position:relative;z-index:2}
+.hero-content h1{font-size:clamp(3rem,6vw,5rem);font-weight:800;line-height:1.1;margin-bottom:2rem;letter-spacing:-.02em}
+.hero-subtitle{font-size:1.4rem;font-weight:300;line-height:1.7;opacity:.95;max-width:800px;margin:0 auto}
+
+/* CONTACT SECTION */
+.contact-section{background:var(--off-white);padding:6rem 3rem}
+.contact-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start;width:100%}
+
+/* INFO */
+.contact-info h2{font-size:2rem;font-weight:800;color:var(--navy);margin-bottom:.5rem}
+.contact-info .section-label{font-size:.85rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy);margin-bottom:1rem}
+.contact-info p{font-size:1.05rem;color:var(--gray);line-height:1.9;margin-bottom:2.5rem}
+.info-items{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2.5rem}
+.info-item{display:flex;gap:1.2rem;align-items:flex-start}
+.info-icon{width:46px;height:46px;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.info-item h4{font-size:.85rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.3rem}
+.info-item p{font-size:.95rem;color:var(--gray);line-height:1.7;margin:0}
+.info-item a{color:var(--gray);text-decoration:none;transition:color .3s}
+.info-item a:hover{color:var(--navy)}
+.social-links{display:flex;gap:1rem;margin-top:2.5rem}
+.social-link{width:46px;height:46px;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.1rem;text-decoration:none;transition:all .3s}
+.social-link:hover{background:var(--navy-dark);transform:translateY(-3px)}
+
+/* FORM */
+.contact-form-wrap{background:var(--white);padding:3rem;box-shadow:0 10px 40px rgba(27,38,79,.08)}
+.contact-form-wrap h3{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.5rem}
+.contact-form-wrap .form-subtitle{font-size:.95rem;color:var(--gray);margin-bottom:2rem;line-height:1.6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem}
+.form-group{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+.form-group label{font-size:.85rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.08em}
+.form-group input,
+.form-group select,
+.form-group textarea{width:100%;max-width:100%;padding:.9rem 1.1rem;border:2px solid var(--light-gray);font-family:'Montserrat',sans-serif;font-size:.95rem;color:var(--navy);background:var(--off-white);transition:border-color .3s;outline:none;appearance:none;-webkit-appearance:none;box-sizing:border-box}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--navy);background:var(--white)}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:var(--gray)}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231b264f' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1.1rem center;background-size:12px;background-color:var(--off-white);cursor:pointer}
+.form-group select:focus{background-color:var(--white)}
+.form-group select option{color:var(--navy);background:var(--white)}
+.form-group textarea{resize:vertical;min-height:130px}
+.form-note{font-size:.85rem;color:var(--gray);margin-bottom:2rem;display:flex;align-items:flex-start;gap:.6rem;line-height:1.6}
+.form-note i{color:var(--navy);margin-top:.15rem;flex-shrink:0}
+.submit-btn{width:100%;padding:1.2rem;background:var(--navy);color:var(--white);border:none;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:1rem}
+.submit-btn:hover{background:var(--navy-dark);transform:translateY(-2px);box-shadow:0 10px 30px rgba(27,38,79,.2)}
+.submit-btn i{font-size:1.1rem}
+
+/* MAP */
+.map-section{background:var(--white);overflow:hidden;width:100%}
+.map-container{width:100%;height:480px;filter:grayscale(100%);overflow:hidden}
+.map-container iframe{width:100%;height:100%;border:0;display:block;max-width:100%}
+
+/* FOOTER */
+.footer{background:var(--navy);color:var(--white);padding:4rem 3rem 2rem}
+.footer-container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+.footer-brand p{color:rgba(255,255,255,.7);line-height:1.8;font-size:.95rem}
+.footer-col h4{font-size:1.05rem;font-weight:700;margin-bottom:1.5rem;color:var(--white);letter-spacing:.05em;text-transform:uppercase}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.9rem}
+.footer-col a{color:rgba(255,255,255,.8);text-decoration:none;transition:color .3s;font-size:.9rem}
+.footer-col a:hover{color:var(--white)}
+.footer-info{display:flex;flex-direction:column;gap:.8rem}
+.footer-info-item{display:flex;align-items:start;gap:.8rem;color:rgba(255,255,255,.8);font-size:.9rem}
+.footer-info-item i{color:var(--white);margin-top:.2rem}
+.footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:.9rem}
+.footer-bottom a{color:var(--white);text-decoration:none}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .contact-grid{grid-template-columns:1fr;gap:3rem}
+  .footer-container{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .header-container{padding:1rem 1.5rem;justify-content:center;position:relative}
+  .logo{margin:0 auto;opacity:0;transition:opacity .3s}
+  .header.scrolled .logo{opacity:1}
+  .logo img{height:50px}
+  .hamburger{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);z-index:10;display:flex}
+  .nav-links{display:none}
+  .hero{min-height:50vh;padding:100px 1.5rem 60px}
+  .contact-section{padding:4rem 1.5rem}
+  .contact-form-wrap{padding:2rem 1.5rem}
+  .form-row{grid-template-columns:1fr}
+  .form-group input,
+  .form-group select,
+  .form-group textarea{font-size:.9rem}
+  .map-container{height:350px}
+  .footer-container{grid-template-columns:1fr;gap:2.5rem;text-align:center}
+  .footer-info-item{justify-content:center}
+  .social-links{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="header-container">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="OJP Estudio Jurídico">
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="equipo.html">Equipo</a>
+      <a href="areas.html">Áreas</a>
+      <a href="contacto.html" class="active">Contacto</a>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Inicio</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="equipo.html">Equipo</a>
+  <a href="areas.html">Áreas</a>
+  <a href="contacto.html">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>Contacto</h1>
+      <p class="hero-subtitle">Estamos para ayudarte. Contanos tu caso y un profesional se pondrá en contacto a la brevedad</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="contact-grid">
+
+    <!-- INFO -->
+    <div class="contact-info">
+      <div class="section-label">Estudio Jurídico</div>
+      <h2>Hablemos de tu Caso</h2>
+      <p>Completá el formulario y te enviamos un mensaje por WhatsApp para coordinar una consulta. También podés contactarnos directamente por cualquiera de los siguientes medios.</p>
+
+      <div class="info-items">
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <h4>Dirección</h4>
+            <p>Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div>
+            <h4>Horario de Atención</h4>
+            <p>Lunes a viernes de 9 a 14 hs</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+          <div>
+            <h4>WhatsApp</h4>
+            <p><a href="https://wa.me/XXXXXXXXXX">+54 9 XXXX XXXX</a></p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <h4>Correo Electrónico</h4>
+            <p><a href="mailto:contacto@ojpestudio.com">contacto@xxxxxxxxxxxx.com</a></p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fab fa-instagram"></i></div>
+          <div>
+            <h4>Instagram</h4>
+            <p><a href="https://instagram.com/XXXXXXXXXX" target="_blank">@XXXXXXXXXX</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- FORM -->
+    <div class="contact-form-wrap">
+      <h3>Envianos tu Consulta</h3>
+      <p class="form-subtitle">Completá el formulario y te contactaremos por WhatsApp para coordinar una consulta personalizada.</p>
+
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Teléfono / WhatsApp</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="Ej: 221 XXX XXXX" required>
+        </div>
+
+        <div class="form-group">
+          <label for="area">Área de Consulta</label>
+          <select id="area" name="area" required>
+            <option value="" disabled selected>Seleccioná un área</option>
+            <option value="Derecho de Familia">Derecho de Familia</option>
+            <option value="Derecho Civil">Derecho Civil</option>
+            <option value="Derecho Comercial">Derecho Comercial</option>
+            <option value="Derecho Laboral">Derecho Laboral</option>
+            <option value="Derecho Penal">Derecho Penal</option>
+            <option value="Derecho Societario">Derecho Societario</option>
+            <option value="Contratos">Contratos</option>
+            <option value="Registración de Marcas">Registración de Marcas</option>
+            <option value="No sé / Consulta general">No sé / Consulta general</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="profesional">Profesional de preferencia</label>
+          <select id="profesional" name="profesional">
+            <option value="" disabled selected>Seleccioná un profesional (opcional)</option>
+            <option value="Micaela Jofré">Micaela Jofré – Familia · Civil · Comercial · Penal</option>
+            <option value="Juliana Palacios">Juliana Palacios – Laboral · Penal</option>
+            <option value="Sebastián Otamendi">Sebastián Otamendi – Comercial · Societario · Contratos · Marcas</option>
+            <option value="Sin preferencia">Sin preferencia</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Descripción breve del caso</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente tu situación para poder orientarte mejor..." required></textarea>
+        </div>
+
+        <p class="form-note">
+          <i class="fas fa-info-circle"></i>
+          Al enviar el formulario se abrirá WhatsApp con tu consulta pre-cargada para que podamos atenderte a la brevedad.
+        </p>
+
+        <button type="submit" class="submit-btn">
+          <i class="fab fa-whatsapp"></i>
+          ENVIAR POR WHATSAPP
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAPA -->
+<section class="map-section">
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3271.0!2d-57.9533!3d-34.9215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+10+N%C2%BA1240%2C+La+Plata%2C+Buenos+Aires!5e0!3m2!1ses!2sar!4v1700000000000"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Ubicación OJP Estudio Jurídico">
+    </iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="./logo.png" alt="OJP" style="width:120px;height:auto;margin-bottom:1rem;filter:brightness(0) invert(1)">
+      <p>Estudio jurídico integral especializado en múltiples ramas del derecho. Acompañamiento personalizado y profesional en La Plata.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="equipo.html">Equipo</a></li>
+        <li><a href="areas.html">Áreas</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Áreas</h4>
+      <ul>
+        <li><a href="areas.html#familia">Familia</a></li>
+        <li><a href="areas.html#civil">Civil</a></li>
+        <li><a href="areas.html#comercial">Comercial</a></li>
+        <li><a href="areas.html#laboral">Laboral</a></li>
+        <li><a href="areas.html#penal">Penal</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-info">
+        <div class="footer-info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Calle 10 entre 57 y 58 N° 1240<br>La Plata, Buenos Aires</span>
+        </div>
+        <div class="footer-info-item">
+          <i class="fas fa-clock"></i>
+          <span>Lun a Vie: 9 a 14 hs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 OJP Estudio Jurídico Integral · Otamendi · Jofré · Palacios | Desarrollado por <a href="https://instagram.com/sageedev" target="_blank">@sageedev</a></p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.getElementById('header');
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.mobile-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // Form → WhatsApp
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre     = document.getElementById('nombre').value.trim();
+    const apellido   = document.getElementById('apellido').value.trim();
+    const telefono   = document.getElementById('telefono').value.trim();
+    const area       = document.getElementById('area').value;
+    const profesional = document.getElementById('profesional').value;
+    const mensaje    = document.getElementById('mensaje').value.trim();
+
+    const whatsappNumber = 'XXXXXXXXXX'; // Reemplazar con número real
+
+    let text = `Hola, me contacto desde el sitio web de OJP Estudio Jurídico.\n\n`;
+    text += `*Nombre:* ${nombre} ${apellido}\n`;
+    text += `*Teléfono:* ${telefono}\n`;
+    text += `*Área de consulta:* ${area}\n`;
+    if (profesional && profesional !== 'Sin preferencia') {
+      text += `*Profesional de preferencia:* ${profesional}\n`;
+    }
+    text += `\n*Consulta:*\n${mensaje}`;
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  });
+});
+</script>
+</body>
+</html>
