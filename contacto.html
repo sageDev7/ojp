@@ -205,14 +205,14 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
           <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
           <div>
             <h4>WhatsApp</h4>
-            <p><a href="https://wa.me/XXXXXXXXXX">+54 9 XXXX XXXX</a></p>
+            <p><a href="https://wa.me/542216333921">+54 9 221 633-3921</a></p>
           </div>
         </div>
         <div class="info-item">
           <div class="info-icon"><i class="fas fa-envelope"></i></div>
           <div>
             <h4>Correo Electrónico</h4>
-            <p><a href="/cdn-cgi/l/email-protection#43202c2d372220372c032c293326303736272a2c6d202c2e"><span class="__cf_email__" data-cfemail="791a16170d181a0d1639010101010101010101010101571a1614">[email&#160;protected]</span></a></p>
+            <p><a href="mailto:ojpestudiojuridico@gmail.com">ojpestudiojuridico@gmail.com</a></p>
           </div>
         </div>
         <div class="info-item">
@@ -355,7 +355,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.getElementById('header');
   const hamburger = document.getElementById('hamburger');
@@ -390,11 +390,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const profesional = document.getElementById('profesional').value;
     const mensaje    = document.getElementById('mensaje').value.trim();
 
-    const whatsappNumber = 'XXXXXXXXXX'; // Reemplazar con número real
+    const whatsappNumbers = {
+      'Micaela Jofré':      '542216333921',
+      'Juliana Palacios':   '542216041448',
+      'Sebastián Otamendi': '541158005390',
+      'default':            '542216333921'
+    };
+
+    const whatsappNumber = whatsappNumbers[profesional] || whatsappNumbers['default'];
 
     let text = `Hola, me contacto desde el sitio web de OJP Estudio Jurídico.\n\n`;
     text += `*Nombre:* ${nombre} ${apellido}\n`;
     text += `*Teléfono:* ${telefono}\n`;
     text += `*Área de consulta:* ${area}\n`;
     if (profesional && profesional !== 'Sin preferencia') {
-      text 
+      text += `*Profesional de preferencia:* ${profesional}\n`;
+    }
+    text += `\n*Consulta:*\n${mensaje}`;
+
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  });
+});
+</script>
+</body>
+</html>
