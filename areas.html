@@ -53,7 +53,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
 
 /* AREAS OVERVIEW */
 .areas-overview{background:var(--off-white)}
-.areas-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.areas-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .area-card{background:var(--white);padding:2.5rem 2rem;transition:all .3s;border-bottom:3px solid transparent;position:relative;overflow:hidden;cursor:pointer;text-decoration:none;display:block}
 .area-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:var(--navy);transform:translateY(100%);transition:transform .3s;z-index:0}
 .area-card:hover::before{transform:translateY(0)}
@@ -114,8 +114,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
 
 /* RESPONSIVE */
 @media(max-width:1024px){
-  .areas-grid{grid-template-columns:repeat(2,1fr)}
-  .area-detail-container{grid-template-columns:1fr;gap:3rem;direction:ltr!important}
+  .areas-grid{grid-template-columns:repeat(2,1fr)}  .area-detail-container{grid-template-columns:1fr;gap:3rem;direction:ltr!important}
   .area-detail:nth-child(even) .area-detail-container>*{direction:ltr}
   .area-detail-image{max-width:600px;margin:0 auto}
   .area-detail-image::before{left:-15px!important;right:auto!important}
@@ -234,6 +233,11 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
       <i class="fas fa-trademark area-icon"></i>
       <h3>Registración de Marcas</h3>
       <p>Búsqueda, registro y defensa de marcas comerciales</p>
+    </a>
+    <a href="#multas" class="area-card">
+      <i class="fas fa-car area-icon"></i>
+      <h3>Multas de Tránsito</h3>
+      <p>Revisión, impugnación y gestión de multas de tránsito por irregularidades formales o sustanciales</p>
     </a>
   </div>
 </section>
@@ -470,6 +474,35 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
   </div>
 </section>
 
+<!-- DETALLE: MULTAS DE TRÁNSITO -->
+<section class="area-detail" id="multas">
+  <div class="area-detail-container">
+    <div class="area-detail-image">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Multas de Tránsito">
+    </div>
+    <div class="area-detail-content">
+      <div class="section-label">Área de Práctica</div>
+      <h2>Revisión y Gestión de Multas de Tránsito</h2>
+      <p>Realizamos un análisis jurídico exhaustivo de multas de tránsito a fin de verificar su correcta notificación y legalidad en la confección del acta. Cuando detectamos irregularidades formales o sustanciales, gestionamos su reducción o anulación por las vías administrativas correspondientes.</p>
+      <p>Trabajamos con criterios técnicos, respaldo normativo y absoluta transparencia en cada etapa del proceso. Sin promesas infundadas: evaluamos cada caso con responsabilidad profesional.</p>
+      <ul class="area-detail-list">
+        <li>Análisis de legalidad del acta</li>
+        <li>Verificación de notificación</li>
+        <li>Impugnación administrativa</li>
+        <li>Gestión de reducción de multa</li>
+        <li>Solicitud de anulación</li>
+        <li>Recursos ante organismos viales</li>
+        <li>Asesoramiento preventivo</li>
+        <li>Seguimiento del trámite</li>
+      </ul>
+      <div class="area-professional">
+        <i class="fas fa-user-tie"></i>
+        <span>Equipo OJP Estudio Jurídico</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta">
   <div class="cta-container">
@@ -510,6 +543,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--nav
         <li><a href="#societario">Societario</a></li>
         <li><a href="#contratos">Contratos</a></li>
         <li><a href="#marcas">Marcas</a></li>
+        <li><a href="#multas">Multas de Tránsito</a></li>
       </ul>
     </div>
     <div class="footer-col">
